@@ -6,11 +6,13 @@ function CurrencyConverter() {
     const [chosenPrimaryCurrency,setChosenPrimaryCurrency] = useState('BTC')
     const [chosenSecondaryCurrency,setChosenSecondaryCurrency] = useState('BTC')
     const [amountPrimCurr,setAmountPrimCurrency] = useState(0)
+    const [exchangeRate, setExchangeRate] = useState(0)
+    const [resultAmount,setResultAmount] = useState(0)
     console.log(amountPrimCurr);
 
     const convert = () => {
         console.log("CONVERTED");
-        const options = {
+        let options = {
             method:'GET',
             url:'https://alpha-vantage.p.rapidapi.com/query',
             params:{
@@ -26,6 +28,8 @@ function CurrencyConverter() {
         axios.request(options).then(
             function(response){
                 console.log(response.data);
+                setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
+                setResultAmount(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']*amountPrimCurr);
             }
         ).catch(
             function(error){
@@ -33,6 +37,8 @@ function CurrencyConverter() {
             }
         );
     }
+    console.log(exchangeRate);
+    console.log(resultAmount);
     return (
       <div className="currency-converter">
         <h2>CURRENCY CONVERTER</h2>
@@ -51,10 +57,10 @@ function CurrencyConverter() {
                         </td>
                         <td>
                             <select
-                                value={chosenPrimaryCurrency}
+                                value={resultAmount}
                                 name="currency-option-1"
                                 className="currency-options"
-                                onChange={(e) => setChosenPrimaryCurrency(e.target.value)}
+                                // onChange={(e) => setChosenPrimaryCurrency(e.target.value)}
                             >
                                 {currencies.map( (currency,_index) => (<option key={_index}>{currency}</option>))}
                             </select>
