@@ -8,10 +8,14 @@ function CurrencyConverter() {
     const [amountPrimCurr,setAmountPrimCurrency] = useState(0)
     const [exchangeRate, setExchangeRate] = useState(0)
     const [resultAmount,setResultAmount] = useState(0)
-    console.log(amountPrimCurr);
-
+    const password = process.env.REACT_APP_API_KEY;
+    //require('dotenv').config();
+    // console.log(process.env);
+    
+    
     const convert = () => {
         console.log("CONVERTED");
+        console.log(password);
         let options = {
             method:'GET',
             url:'https://alpha-vantage.p.rapidapi.com/query',
@@ -22,7 +26,7 @@ function CurrencyConverter() {
             },
             headers:{
                 'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com',
-                'x-rapidapi-key': '95f562ac54msh2ca5fc97ae18b75p1d0acajsn3bb43f273ee4'
+                'x-rapidapi-key': password,
             }
         };
         axios.request(options).then(
