@@ -77,6 +77,7 @@ function CurrencyConverter() {
                                 type="number"
                                 name="currency-amount-2"
                                 value={""}
+                                disabled="true"
                             />
                         </td>
                         <td>
