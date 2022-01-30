@@ -96,7 +96,7 @@ function CurrencyConverter() {
             <button id="convert-button" onClick={convert}>Convert</button>
         </div>
 
-        <ExchangeRate>Exchange Rate is</ExchangeRate>
+        <ExchangeRate exchangeRate={exchangeRate}></ExchangeRate>
       </div>
     );
   }
