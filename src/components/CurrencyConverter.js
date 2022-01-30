@@ -76,7 +76,7 @@ function CurrencyConverter() {
                             <input
                                 type="number"
                                 name="currency-amount-2"
-                                value={""}
+                                value={resultAmount}
                                 disabled="true"
                             />
                         </td>
@@ -96,7 +96,7 @@ function CurrencyConverter() {
             <button id="convert-button" onClick={convert}>Convert</button>
         </div>
 
-        <ExchangeRate></ExchangeRate>
+        <ExchangeRate>Exchange Rate is</ExchangeRate>
       </div>
     );
   }
